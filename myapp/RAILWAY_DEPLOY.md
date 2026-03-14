@@ -4,6 +4,18 @@ Step-by-step guide to deploy your LMS to Railway (free tier).
 
 ---
 
+## ⚠️ CRITICAL: Set Root Directory First
+
+**Your Laravel app is in the `myapp` folder.** Railway must be told to build from that folder, or the build will fail with *"Railpack could not determine how to build the app"*.
+
+1. Go to your **lms** service → **Settings**
+2. Under **Source**, set **Root Directory** to: **`myapp`**
+3. Save and redeploy
+
+Do this **before** or **immediately after** connecting your GitHub repo.
+
+---
+
 ## Prerequisites
 
 1. **GitHub account** – Railway deploys from GitHub
@@ -100,8 +112,8 @@ git push -u origin main
    - **Custom Build Command:** `composer install --no-dev --optimize-autoloader && npm install && npm run build`
 3. Under **Deploy**:
    - **Pre-Deploy Command:** `chmod +x ./railway/init-app.sh && sh ./railway/init-app.sh`
-4. Under **Source** (if your app is in a subfolder):
-   - **Root Directory:** `myapp` *(only if repo root is `lms`)*
+4. Under **Source** (required for this repo):
+   - **Root Directory:** `myapp` — **must be set** or build will fail
 
 ---
 
